@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Array</title>
+  </head>
+  <body>
+    <h1>Berlatih Array</h1>
+    <h3>Looping Array</h3>
+    <div id="jawaban1"></div>
+    <script>
+      /* SOAL NO. 1 LOOPING PADA ARRAY
+        Buatlah sebuah fungsi dengan nama dataHandling() dengan sebuah parameter untuk menerima argumen. Argumen yang akan diterima
+        adalah sebuah array yang berisi beberapa array sejumlah n. Contoh input dapat dilihat dibawah: var input = [
+        ["0001", "Adinda Salsabila Ramadhani", "Pekanbaru", "21/05/1989", "Membaca"], ["0002", "Diwi Fatihani Izzati", "Padang", "10/10/2002", "Bermain Gitar"], ["0003", "Rosita Ananza", "Aceh", "25/12/2002", "Memasak"], ["0004", "Maharammi", "Kalimantan", "6/4/2002", "Berkebun"]
+        ]
+        Tugas kamu adalah mengimplementasikan fungsi dataHandling agar dapat menampilkan data-data pada dari argumen seperti di bawah ini: Nomor ID: 0001
+        Nama Lengkap: Adinda Salsabila Ramadhani
+        TTL: Pekanbaru 21/05/2002
+        Hobi: Membaca Nomor ID: 0002
+        Nama Lengkap: Diwi Fatihani Izzati
+        TTL: Padang 10/10/2002
+        Hobi: Bermain Gitar Nomor ID: 0003
+        Nama Lengkap: Rosita Ananza
+        TTL: Aceh 25/12/2002
+        Hobi: Memasak
+        Nomor ID: 0004
+        Nama Lengkap: Maharammi
+        TTL: Kalimantan 6/4/2002
+        Hobi: Berkebun
+        */
+      var jawaban1 = [
+        ["0001", "Adinda Salsabila Ramadhani", "Pekanbaru", "21/05/2002", "Membaca"],
+        ["0002", "Diwi Fatihani izzati", "Padang", "10/10/2002", "Bermain Gitar"],
+        ["0003", "Rosita Ananza", "Aceh", "25/12/2002", "Memasak"],
+        ["0004", "Maharammi", "Kalimantan", "6/4/2002", "Berkebun"],
+      ];
+      // Code kamu di sini, lakukan looping terhadap input di atas var jawaban1 // = Isikan outputnya di sini
+
+      for (i = 0; i < jawaban1.length; i++) {
+        document.write("<br>" + "Nomor: " + jawaban1[i][0] + "<br>" + "Nama: " + jawaban1[i][1] + "<br>" + "TTl: " + jawaban1[i][2] + "," + jawaban1[i][3] + "<br>" + "Hobi: " + jawaban1[i][4] + "<br>" + "<br>");
+      }
+
+      document.getElementById("jawaban1").innerHTML = jawaban1;
+    </script>
+  </body>
+</html>
