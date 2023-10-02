@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mini Ecommerce</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <style>
+      .card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 20px;
+        margin-left: 60px;
+        margin-bottom: 10px;
+      }
+    </style>
+    <div class="container">
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Mini Ecommerce</a>
+        <form class="form-inline" id="formItem">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" id="keyword" aria-label="Search" />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchItem">Search</button>
+        </form>
+        <button class="btn btn-primary" id="cart"><i class="fas fa-shopping-cart"></i>(0)</button>
+      </nav>
+      <div class="row">
+        <div class="row col-md-12 mt-2" id="listBarang"></div>
+      </div>
+    </div>
+
+    <script>
+      var items = [
+        ["001", "KEYBOARD LOGITEK", 200000, "Keyboard ini sangat direkomendasikan untuk anda yang bekerja di kantoran", "keyboard-logitek.jpeg"],
+        ["002", "KEYBOARD MCI", 250000, "keyboard ini sangat direkomendasikan untuk anda yang sangat sukak games,ayok beli keyboard gaming ini", "keyboard-msi.jpeg"],
+        ["003", "MOUSE GENIUS", 100000, "Tersedia mouse genius,dapat mempermudah anda dalam pekerjaan dan tugas", "mouse-genius.jpeg"],
+        ["004", "MOUSE KABEL", 80000, "Mouse ini sangat praktis penggunaanya dan memiliki harga yang terjangkau", "mouse-kabel.jpeg"],
+      ];
+
+      // Inisialisasi tampilkan semua item saat halaman pertama dimuat
+      updateCardDisplay(items);
+
+      // Mendapatkan elemen button "Tambahkan ke Keranjang"
+      var addToCartButtons = document.querySelectorAll(".btn-primary#addCart");
+
+      // Mendapatkan elemen icon keranjang di navbar
+      var cartIcon = document.getElementById("cart");
+
+      // Inisialisasi jumlah item dalam keranjang
+      var cartCount = 0;
+
+      // Menambahkan event listener untuk setiap button "Tambahkan ke Keranjang"
+      addToCartButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          // Menambahkan 1 ke jumlah item dalam keranjang
+          cartCount++;
+
+          // Memperbarui teks pada icon keranjang di navbar
+          cartIcon.innerHTML = `<i class="fas fa-shopping-cart"></i>(${cartCount})`;
+        });
+      });
+
+      function updateCardDisplay(searchResults) {
+        var cardContainer = document.getElementById("listBarang");
+        cardContainer.innerHTML = "";
+
+        searchResults.forEach(function (item) {
+          var cardHtml = `<div class="card" style="width: 18rem">
+          <img src="${item[4]}" class="card-img-top" height="200px" width="200px" alt="${item[1]}" />
+          <div class="card-body">
+            <h5 class="card-title" id="itemName">${item[1]}</h5>
+            <p class="card-text" id="itemDesc">${item[3]}</p>
+            <p class="card-text">Rp ${item[2]}</p>
+            <a href="#" class="btn btn-primary addCart">Tambahkan ke keranjang</a>
+          </div>
+        </div>`;
+
+          cardContainer.innerHTML += cardHtml;
+        });
+
+        // Menambahkan event listener untuk setiap button "Tambahkan ke Keranjang" yang baru ditampilkan
+        var newAddToCartButtons = document.querySelectorAll(".btn-primary.addCart");
+        newAddToCartButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            // Menambahkan 1 ke jumlah item dalam keranjang
+            cartCount++;
+            // Memperbarui teks pada icon keranjang di navbar
+            cartIcon.innerHTML = `<i class="fas fa-shopping-cart"></i>(${cartCount})`;
+          });
+        });
+      }
+
+      // Fungsi untuk menangani submit form
+      document.getElementById("formItem").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var keyword = document.getElementById("keyword").value.toLowerCase();
+        var searchResults = items.filter(function (item) {
+          return item[1].toLowerCase().includes(keyword);
+        });
+        updateCardDisplay(searchResults);
+      });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <style>
+      body {
+        background-color: darkcyan;
+      }
+
+      .row .card:hover {
+        font-family: monaco, monospace;
+        color: darkcyan;
+        text-shadow: 2px 2px 4px #5ce7d0;
+        box-shadow: 10px 10px 5px rgb(148, 223, 208);
+      }
+    </style>
+  </body>
+</html>
